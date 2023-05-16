@@ -15,6 +15,8 @@ class HomeChangeAccessState extends HomeState {}
 
 class HomeTransferTeacherDataState extends HomeState {}
 
+class HomeEditStudyPlanState extends HomeState {}
+
 class HomeAddPageState extends HomeState {}
 
 class HomeDeletePageState extends HomeState {}

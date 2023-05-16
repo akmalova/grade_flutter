@@ -82,6 +82,12 @@ class _SideMenuState extends State<SideMenu> {
                   ),
                   title: PageTypes.students,
                   children: [
+                    SideMenuSubitem(
+                      title: 'Редактировать рабочий план студента',
+                      onTap: () {
+                        context.read<HomeBloc>().add(HomeEditStudyPlanEvent());
+                      },
+                    ),
                     ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),

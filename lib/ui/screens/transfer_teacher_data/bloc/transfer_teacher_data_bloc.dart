@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grade/domain/model/teacher_model.dart';
 import 'package:grade/domain/repository/grade_repository.dart';
 import 'package:postgres/postgres.dart';
 
@@ -29,12 +28,12 @@ class TransferTeacherDataBloc
       final previousState = state as TransferDataInitialState;
       emit(TransferDataInProgressState());
       if (previousState.teacherIdFrom.isEmpty ||
-          previousState.teacherIdFrom.isEmpty) {
+          previousState.teacherIdTo.isEmpty) {
         emit(
           TransferDataInitialState(
             isEmptyFields: true,
-            teacherIdFrom: '',
-            teacherIdTo: '',
+            teacherIdFrom: previousState.teacherIdFrom,
+            teacherIdTo: previousState.teacherIdTo,
           ),
         );
       } else {

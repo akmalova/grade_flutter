@@ -230,7 +230,7 @@ class TeacherDataSource extends DataGridSource {
         (dataGridCell) {
           return Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Text(
               dataGridCell.value.toString(),
               style: const TextStyle(

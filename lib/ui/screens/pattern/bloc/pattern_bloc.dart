@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grade/domain/model/page_model.dart';
 import 'package:grade/domain/repository/grade_repository.dart';
 import 'package:postgres/postgres.dart';
 

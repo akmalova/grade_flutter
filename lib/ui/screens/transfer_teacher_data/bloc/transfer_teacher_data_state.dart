@@ -24,9 +24,3 @@ class TransferDataSuccessState extends TransferTeacherDataState {
 }
 
 class TransferDataErrorState extends TransferTeacherDataState {}
-
-class TransferDataGetTeacherIdToState extends TransferTeacherDataState {
-  final List<TeacherModel> teachers;
-
-  TransferDataGetTeacherIdToState(this.teachers);
-}
