@@ -17,6 +17,22 @@ class ChangeAccessInitialState extends ChangeAccessState {
     required this.secondName,
     required this.userRole,
   });
+
+  ChangeAccessInitialState copyWith({
+    bool? isEmptyFields,
+    String? lastName,
+    String? firstName,
+    String? secondName,
+    String? userRole,
+  }) {
+    return ChangeAccessInitialState(
+      isEmptyFields: isEmptyFields ?? this.isEmptyFields,
+      lastName: lastName ?? this.lastName,
+      firstName: firstName ?? this.firstName,
+      secondName: secondName ?? this.secondName,
+      userRole: userRole ?? this.userRole,
+    );
+  }
 }
 
 class ChangeAccessGetTeachersSuccessState extends ChangeAccessState {

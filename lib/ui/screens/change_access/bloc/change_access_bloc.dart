@@ -38,15 +38,7 @@ class ChangeAccessBloc extends Bloc<ChangeAccessEvent, ChangeAccessState> {
           previuosState.firstName.isEmpty ||
           previuosState.secondName.isEmpty ||
           previuosState.userRole.isEmpty) {
-        emit(
-          ChangeAccessInitialState(
-            isEmptyFields: true,
-            lastName: previuosState.lastName,
-            firstName: previuosState.firstName,
-            secondName: previuosState.secondName,
-            userRole: previuosState.userRole,
-          ),
-        );
+        emit(previuosState.copyWith(isEmptyFields: true));
       } else {
         userRole = previuosState.userRole;
         final result = await gradeRepository.getTeachers(
@@ -69,8 +61,13 @@ class ChangeAccessBloc extends Bloc<ChangeAccessEvent, ChangeAccessState> {
   Future<void> _perform(ChangeAccessPerformEvent event, Emitter emit) async {
     try {
       emit(ChangeAccessInProgressState());
-      await gradeRepository.changeAccess(event.id, userRole);
-      emit(ChangeAccessSuccessState());
+      final result = await gradeRepository.changeAccess(event.id, userRole);
+      
+      if (result != -1) {
+        emit(ChangeAccessSuccessState());
+      } else {
+        emit(ChangeAccessErrorState());
+      }
     } on PostgreSQLException catch (e) {
       emit(ChangeAccessErrorState());
       debugPrint(e.toString());
@@ -91,50 +88,24 @@ class ChangeAccessBloc extends Bloc<ChangeAccessEvent, ChangeAccessState> {
   void _lastNameChanged(
       ChangeAccessLastNameChangedEvent event, Emitter emit) async {
     final previuosState = state as ChangeAccessInitialState;
-    emit(
-      ChangeAccessInitialState(
-        lastName: event.lastName,
-        firstName: previuosState.firstName,
-        secondName: previuosState.secondName,
-        userRole: previuosState.userRole,
-      ),
-    );
+    emit(previuosState.copyWith(lastName: event.lastName));
   }
 
   void _firstNameChanged(
       ChangeAccessFirstNameChangedEvent event, Emitter emit) async {
     final previuosState = state as ChangeAccessInitialState;
-    emit(ChangeAccessInitialState(
-      lastName: previuosState.lastName,
-      firstName: event.firstName,
-      secondName: previuosState.secondName,
-      userRole: previuosState.userRole,
-    ));
+    emit(previuosState.copyWith(firstName: event.firstName));
   }
 
   void _secondNameChanged(
       ChangeAccessSecondNameChangedEvent event, Emitter emit) async {
     final previuosState = state as ChangeAccessInitialState;
-    emit(
-      ChangeAccessInitialState(
-        lastName: previuosState.lastName,
-        firstName: previuosState.firstName,
-        secondName: event.secondName,
-        userRole: previuosState.userRole,
-      ),
-    );
+    emit(previuosState.copyWith(secondName: event.secondName));
   }
 
   void _userRoleChanged(
       ChangeAccessUserRoleChangedEvent event, Emitter emit) async {
     final previuosState = state as ChangeAccessInitialState;
-    emit(
-      ChangeAccessInitialState(
-        lastName: previuosState.lastName,
-        firstName: previuosState.firstName,
-        secondName: previuosState.secondName,
-        userRole: event.userRole,
-      ),
-    );
+    emit(previuosState.copyWith(userRole: event.userRole));
   }
 }

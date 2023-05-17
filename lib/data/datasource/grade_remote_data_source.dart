@@ -104,4 +104,23 @@ class GradeRemoteDataSource {
     );
     return result[0][0];
   }
+
+  Future<int> editStudyPlan(
+    String recordBookId,
+    String studyPlanIdFrom,
+    String studyPlanIdTo,
+    String year,
+  ) async {
+    final result = await _connection.query(
+      'SELECT * FROM edit_study_plan(@recordBookId, '
+      '@studyPlanIdFrom, @studyPlanIdTo, @year)',
+      substitutionValues: {
+        'recordBookId': recordBookId,
+        'studyPlanIdFrom': studyPlanIdFrom,
+        'studyPlanIdTo': studyPlanIdTo,
+        'year': year,
+      },
+    );
+    return result[0][0];
+  }
 }

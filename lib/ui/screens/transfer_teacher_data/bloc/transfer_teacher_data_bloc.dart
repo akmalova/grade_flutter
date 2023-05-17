@@ -29,19 +29,18 @@ class TransferTeacherDataBloc
       emit(TransferDataInProgressState());
       if (previousState.teacherIdFrom.isEmpty ||
           previousState.teacherIdTo.isEmpty) {
-        emit(
-          TransferDataInitialState(
-            isEmptyFields: true,
-            teacherIdFrom: previousState.teacherIdFrom,
-            teacherIdTo: previousState.teacherIdTo,
-          ),
-        );
+        emit(previousState.copyWith(isEmptyFields: true));
       } else {
         final result = await gradeRepository.transferTeacherData(
           previousState.teacherIdFrom,
           previousState.teacherIdTo,
         );
-        emit(TransferDataSuccessState(result));
+
+        if (result != -1) {
+          emit(TransferDataSuccessState(result));
+        } else {
+          emit(TransferDataErrorState());
+        }
       }
     } on PostgreSQLException catch (e) {
       emit(TransferDataErrorState());
@@ -61,22 +60,12 @@ class TransferTeacherDataBloc
   void _teacherIdFromChanged(
       TransferDataTeacherIdFromChangedEvent event, Emitter emit) async {
     final previuosState = state as TransferDataInitialState;
-    emit(
-      TransferDataInitialState(
-        teacherIdFrom: event.teacherIdFrom,
-        teacherIdTo: previuosState.teacherIdTo,
-      ),
-    );
+    emit(previuosState.copyWith(teacherIdFrom: event.teacherIdFrom));
   }
 
   void _teacherIdToChanged(
       TransferDataTeacherIdToChangedEvent event, Emitter emit) async {
     final previuosState = state as TransferDataInitialState;
-    emit(
-      TransferDataInitialState(
-        teacherIdFrom: previuosState.teacherIdFrom,
-        teacherIdTo: event.teacherIdTo,
-      ),
-    );
+    emit(previuosState.copyWith(teacherIdTo: event.teacherIdTo));
   }
 }

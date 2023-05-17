@@ -36,11 +36,17 @@ class EditStudyPlanBloc extends Bloc<EditStudyPlanEvent, EditStudyPlanState> {
           previousState.year.isEmpty) {
         emit(previousState.copyWith(isEmptyFields: true));
       } else {
-        // final result = await gradeRepository.transferTeacherData(
-        //   previousState.teacherIdFrom,
-        //   previousState.teacherIdTo,
-        // );
-        emit(EditPlanSuccessState());
+        final result = await gradeRepository.editStudyPlan(
+          previousState.recordBookId,
+          previousState.studyPlanIdFrom,
+          previousState.studyPlanIdTo,
+          previousState.year,
+        );
+        if (result != -1) {
+          emit(EditPlanSuccessState());
+        } else {
+          emit(EditPlanErrorState());
+        }
       }
     } on PostgreSQLException catch (e) {
       emit(EditPlanErrorState());

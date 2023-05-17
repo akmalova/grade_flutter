@@ -56,4 +56,19 @@ class GradeRepositoryImpl extends GradeRepository {
   Future<int> transferTeacherData(String idFrom, String idTo) async {
     return gradeRemoteDataSource.transferTeacherData(idFrom, idTo);
   }
+
+  @override
+  Future<int> editStudyPlan(
+    String recordBookId,
+    String studyPlanIdFrom,
+    String studyPlanIdTo,
+    String year,
+  ) {
+    return gradeRemoteDataSource.editStudyPlan(
+      recordBookId,
+      studyPlanIdFrom,
+      studyPlanIdTo,
+      year,
+    );
+  }
 }

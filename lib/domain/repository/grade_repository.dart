@@ -21,4 +21,10 @@ abstract class GradeRepository {
     List<String> values,
   );
   Future<int> transferTeacherData(String idFrom, String idTo);
+  Future<int> editStudyPlan(
+    String recordBookId,
+    String studyPlanIdFrom,
+    String studyPlanIdTo,
+    String year,
+  );
 }

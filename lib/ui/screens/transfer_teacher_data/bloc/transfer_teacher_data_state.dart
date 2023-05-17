@@ -13,6 +13,18 @@ class TransferDataInitialState extends TransferTeacherDataState {
     required this.teacherIdFrom,
     required this.teacherIdTo,
   });
+
+  TransferDataInitialState copyWith({
+    bool? isEmptyFields,
+    String? teacherIdFrom,
+    String? teacherIdTo,
+  }) {
+    return TransferDataInitialState(
+      isEmptyFields: isEmptyFields ?? this.isEmptyFields,
+      teacherIdFrom: teacherIdFrom ?? this.teacherIdFrom,
+      teacherIdTo: teacherIdTo ?? this.teacherIdTo,
+    );
+  }
 }
 
 class TransferDataInProgressState extends TransferTeacherDataState {}
