@@ -1,3 +1,4 @@
+import 'package:grade/domain/model/study_plan_model.dart';
 import 'package:grade/domain/model/teacher_model.dart';
 import 'package:postgres/postgres.dart';
 
@@ -103,6 +104,30 @@ class GradeRemoteDataSource {
       },
     );
     return result[0][0];
+  }
+
+  Future<List<StudyPlanModel>> getPlans(String recordBookId) async {
+    final result = await _connection.query(
+      'SELECT * FROM get_study_plans(@recordBookId)',
+      substitutionValues: {
+        'recordBookId': recordBookId,
+      },
+    );
+
+    List<StudyPlanModel> plansList = [];
+    for (var element in result) {
+      plansList.add(
+        StudyPlanModel(
+          email: element[0],
+          lastName: element[1],
+          firstName: element[2],
+          secondName: element[3],
+          studyPlanId: element[4],
+          year: element[5],
+        ),
+      );
+    }
+    return plansList;
   }
 
   Future<int> editStudyPlan(

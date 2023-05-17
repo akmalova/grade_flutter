@@ -1,3 +1,4 @@
+import 'package:grade/domain/model/study_plan_model.dart';
 import 'package:grade/domain/model/teacher_model.dart';
 
 abstract class GradeRepository {
@@ -27,4 +28,5 @@ abstract class GradeRepository {
     String studyPlanIdTo,
     String year,
   );
+  Future<List<StudyPlanModel>> getPlans(String recordBookId);
 }

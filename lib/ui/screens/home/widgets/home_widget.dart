@@ -8,7 +8,7 @@ import 'package:grade/ui/screens/change_access/change_access_screen.dart';
 import 'package:grade/ui/screens/delete_page/bloc/delete_page_bloc.dart';
 import 'package:grade/ui/screens/delete_page/delete_page_screen.dart';
 import 'package:grade/ui/screens/edit_study_plan/bloc/edit_study_plan_bloc.dart';
-import 'package:grade/ui/screens/edit_study_plan/edit_study_plan.dart';
+import 'package:grade/ui/screens/edit_study_plan/edit_study_plan_screen.dart';
 import 'package:grade/ui/screens/home/bloc/home/home_bloc.dart';
 import 'package:grade/ui/screens/pattern/bloc/pattern_bloc.dart';
 import 'package:grade/ui/screens/pattern/pattern_screen.dart';

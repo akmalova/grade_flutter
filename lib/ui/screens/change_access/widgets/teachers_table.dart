@@ -15,6 +15,7 @@ class TeachersTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO:
     // TeacherDataSource teacherDataSource = TeacherDataSource(teachers: teachers);
     // return SfDataGrid(
     //   allowSorting: true,
@@ -180,67 +181,67 @@ class TeachersTable extends StatelessWidget {
   }
 }
 
-class TeacherDataSource extends DataGridSource {
-  List<DataGridRow> _teachers = [];
+// class TeacherDataSource extends DataGridSource {
+//   List<DataGridRow> _teachers = [];
 
-  TeacherDataSource({required List<TeacherModel> teachers}) {
-    _teachers = teachers
-        .map<DataGridRow>(
-          (e) => DataGridRow(
-            cells: [
-              DataGridCell<String>(columnName: 'Фамилия', value: e.lastName),
-              DataGridCell<String>(columnName: 'Имя', value: e.firstName),
-              DataGridCell<String>(columnName: 'Отчество', value: e.secondName),
-              DataGridCell<String>(
-                  columnName: 'Факультет', value: e.facultyName),
-              DataGridCell<String>(
-                  columnName: 'Должность', value: e.jobPositionName),
-              DataGridCell<String>(columnName: 'Почта', value: e.email),
-              DataGridCell<Widget>(
-                columnName: '',
-                value: TextButton(
-                  onPressed: () {
-                    // onPressed(teacher);
-                  },
-                  style: ButtonStyle(
-                    overlayColor: MaterialStateProperty.all(Colors.transparent),
-                  ),
-                  child: const Text(
-                    'Выбрать',
-                    style: TextStyle(
-                      color: AppColors.blue,
-                      fontSize: 14,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        )
-        .toList();
-  }
+//   TeacherDataSource({required List<TeacherModel> teachers}) {
+//     _teachers = teachers
+//         .map<DataGridRow>(
+//           (e) => DataGridRow(
+//             cells: [
+//               DataGridCell<String>(columnName: 'Фамилия', value: e.lastName),
+//               DataGridCell<String>(columnName: 'Имя', value: e.firstName),
+//               DataGridCell<String>(columnName: 'Отчество', value: e.secondName),
+//               DataGridCell<String>(
+//                   columnName: 'Факультет', value: e.facultyName),
+//               DataGridCell<String>(
+//                   columnName: 'Должность', value: e.jobPositionName),
+//               DataGridCell<String>(columnName: 'Почта', value: e.email),
+//               DataGridCell<Widget>(
+//                 columnName: '',
+//                 value: TextButton(
+//                   onPressed: () {
+//                     // onPressed(teacher);
+//                   },
+//                   style: ButtonStyle(
+//                     overlayColor: MaterialStateProperty.all(Colors.transparent),
+//                   ),
+//                   child: const Text(
+//                     'Выбрать',
+//                     style: TextStyle(
+//                       color: AppColors.blue,
+//                       fontSize: 14,
+//                     ),
+//                   ),
+//                 ),
+//               ),
+//             ],
+//           ),
+//         )
+//         .toList();
+//   }
 
-  @override
-  List<DataGridRow> get rows => _teachers;
+//   @override
+//   List<DataGridRow> get rows => _teachers;
 
-  @override
-  DataGridRowAdapter? buildRow(DataGridRow row) {
-    return DataGridRowAdapter(
-      cells: row.getCells().map<Widget>(
-        (dataGridCell) {
-          return Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              dataGridCell.value.toString(),
-              style: const TextStyle(
-                color: AppColors.grey3,
-              ),
-              overflow: TextOverflow.ellipsis,
-            ),
-          );
-        },
-      ).toList(),
-    );
-  }
-}
+//   @override
+//   DataGridRowAdapter? buildRow(DataGridRow row) {
+//     return DataGridRowAdapter(
+//       cells: row.getCells().map<Widget>(
+//         (dataGridCell) {
+//           return Container(
+//             alignment: Alignment.center,
+//             padding: const EdgeInsets.all(16.0),
+//             child: Text(
+//               dataGridCell.value.toString(),
+//               style: const TextStyle(
+//                 color: AppColors.grey3,
+//               ),
+//               overflow: TextOverflow.ellipsis,
+//             ),
+//           );
+//         },
+//       ).toList(),
+//     );
+//   }
+// }

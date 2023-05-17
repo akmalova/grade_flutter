@@ -1,4 +1,5 @@
 import 'package:grade/data/datasource/grade_remote_data_source.dart';
+import 'package:grade/domain/model/study_plan_model.dart';
 import 'package:grade/domain/model/teacher_model.dart';
 import 'package:grade/domain/repository/grade_repository.dart';
 
@@ -70,5 +71,10 @@ class GradeRepositoryImpl extends GradeRepository {
       studyPlanIdTo,
       year,
     );
+  }
+
+  @override
+  Future<List<StudyPlanModel>> getPlans(String recordBookId) {
+    return gradeRemoteDataSource.getPlans(recordBookId);
   }
 }

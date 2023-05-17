@@ -41,3 +41,11 @@ class EditPlanInProgressState extends EditStudyPlanState {}
 class EditPlanSuccessState extends EditStudyPlanState {}
 
 class EditPlanErrorState extends EditStudyPlanState {}
+
+class EditPlanGetPlansSuccessState extends EditStudyPlanState {
+  final List<StudyPlanModel> studyPlans;
+
+  EditPlanGetPlansSuccessState(this.studyPlans);
+}
+
+class EditPlanPlansNotFoundState extends EditStudyPlanState {}
