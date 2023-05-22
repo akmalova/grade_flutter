@@ -14,7 +14,7 @@ class DeletePageBloc extends Bloc<DeletePageEvent, DeletePageState> {
 
   Future<void> _getData(DeletePageGetDataEvent event, Emitter emit) async {
     emit(DeletePageInProgressState());
-    final box = await Hive.openBox('pages');
+    final box = await Hive.openBox('tasks');
     final List<PageModel> pages = [];
     pages.addAll(box.values.cast());
     emit(DeletePageGetDataState(pages));
@@ -22,7 +22,7 @@ class DeletePageBloc extends Bloc<DeletePageEvent, DeletePageState> {
 
   Future<void> _delete(DeletePageDeleteEvent event, Emitter emit) async {
     emit(DeletePageInProgressState());
-    final box = await Hive.openBox('pages');
+    final box = await Hive.openBox('tasks');
     box.delete(box.keyAt(event.index));
     emit(DeletePageInitialState());
   }

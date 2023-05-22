@@ -13,26 +13,29 @@ class PageAdapter extends TypeAdapter<PageModel> {
     };
     return PageModel(
       type: fields[0] as String,
-      pageName: fields[1] as String,
-      functionName: fields[2] as String,
-      parameters: fields[3] as List<String>,
-      parametersTitles: fields[4] as List<String>,
+      section: fields[1] as String,
+      pageName: fields[2] as String,
+      functionName: fields[3] as String,
+      parameters: fields[4] as List<String>,
+      parametersTitles: fields[5] as List<String>,
     );
   }
 
   @override
   void write(BinaryWriter writer, PageModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.type)
       ..writeByte(1)
-      ..write(obj.pageName)
+      ..write(obj.section)
       ..writeByte(2)
-      ..write(obj.functionName)
+      ..write(obj.pageName)
       ..writeByte(3)
-      ..write(obj.parameters)
+      ..write(obj.functionName)
       ..writeByte(4)
+      ..write(obj.parameters)
+      ..writeByte(5)
       ..write(obj.parametersTitles);
   }
 }

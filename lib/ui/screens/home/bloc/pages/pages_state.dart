@@ -7,7 +7,7 @@ class PagesInitialState extends PagesState {}
 
 class PagesSaveInitialState extends PagesState {
   final bool isEmptyFields;
- final PageModel page;
+  final PageModel page;
 
   PagesSaveInitialState({
     required this.page,
@@ -19,15 +19,13 @@ class PagesGetDataInProgressState extends PagesState {}
 
 class PagesGetDataSuccessState extends PagesState {
   final List<PageModel> pages;
-  final List<PageModel> studentsPages;
-  final List<PageModel> teachersPages;
-  final List<PageModel> disciplinesPages;
+  final List<List<PageModel>> reports;
+  final List<List<PageModel>> tasks;
 
   PagesGetDataSuccessState({
     required this.pages,
-    required this.studentsPages,
-    required this.teachersPages,
-    required this.disciplinesPages,
+    required this.reports,
+    required this.tasks,
   });
 }
 

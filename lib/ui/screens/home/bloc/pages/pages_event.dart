@@ -5,11 +5,7 @@ abstract class PagesEvent {}
 
 class PagesGetDataEvent implements PagesEvent {}
 
-class PagesSaveEvent implements PagesEvent {
-  // final PageModel page;
-
-  // PagesSaveEvent(this.page);
-}
+class PagesSaveEvent implements PagesEvent {}
 
 class PagesTypeChangedEvent extends PagesEvent {
   final String pageType;
@@ -17,6 +13,11 @@ class PagesTypeChangedEvent extends PagesEvent {
   PagesTypeChangedEvent(this.pageType);
 }
 
+class PagesSectionChangedEvent extends PagesEvent {
+  final String pageSection;
+
+   PagesSectionChangedEvent(this.pageSection);
+}
 
 class PagesNameChangedEvent extends PagesEvent {
   final String pageName;

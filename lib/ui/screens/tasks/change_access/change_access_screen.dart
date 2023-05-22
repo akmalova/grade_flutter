@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grade/ui/common_widgets/grade_dropdown_button.dart';
 import 'package:grade/ui/screens/tasks/change_access/bloc/change_access_bloc.dart';
 import 'package:grade/ui/screens/tasks/change_access/widgets/teachers_table.dart';
 import 'package:grade/ui/utils/constants/app_colors.dart';
@@ -115,21 +116,43 @@ class _ChangeAccessScreenState extends State<ChangeAccessScreen> {
                         textWidth: textWidth,
                       ),
                       const SizedBox(height: 15),
-                      TextFieldRow(
-                        title: 'Введите право доступа',
-                        hint: 'Право доступа',
-                        onChanged: (value) {
-                          context
-                              .read<ChangeAccessBloc>()
-                              .add(ChangeAccessUserRoleChangedEvent(value));
-                        },
-                        textFieldWidth: textFieldWidth,
-                        textWidth: textWidth,
-                      ),
+                      if (state is ChangeAccessInitialState)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SizedBox(
+                              width: textWidth,
+                              child: const Text(
+                                'Выберите право доступа',
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 15),
+                            SizedBox(
+                              width: textFieldWidth,
+                              child: GradeDropdownButton(
+                                dropdownValue: state.userRole,
+                                onChanged: (value) {
+                                  context.read<ChangeAccessBloc>().add(
+                                        ChangeAccessUserRoleChangedEvent(
+                                          value ?? '',
+                                        ),
+                                      );
+                                },
+                                values: const ['2', '3', '4'],
+                              ),
+                            ),
+                          ],
+                        ),
                       const SizedBox(height: 10),
-                      if (state is ChangeAccessInitialState && state.isEmptyFields)
+                      if (state is ChangeAccessInitialState &&
+                          state.isEmptyFields)
                         const Text(
-                          'Поля должны быть заполнены',
+                          'Хотя бы одно из полей должно быть заполнено',
                           style: TextStyle(
                             color: AppColors.red,
                             fontSize: 13,

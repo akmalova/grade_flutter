@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grade/domain/model/page_types.dart';
-import 'package:grade/ui/screens/add_task/add_page/widgets/types_dropdown_button.dart';
+import 'package:grade/ui/common_widgets/grade_dropdown_button.dart';
 import 'package:grade/ui/screens/home/bloc/pages/pages_bloc.dart';
 import 'package:grade/ui/utils/constants/app_colors.dart';
 import 'package:grade/ui/common_widgets/grade_app_bar.dart';
@@ -66,7 +66,7 @@ class _AddPageScreenState extends State<AddPageScreen> {
                             SizedBox(
                               width: textWidth,
                               child: const Text(
-                                'Выберите тип задачи',
+                                'Выберите тип',
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
                                   fontSize: 16,
@@ -74,12 +74,43 @@ class _AddPageScreenState extends State<AddPageScreen> {
                               ),
                             ),
                             const SizedBox(width: 15),
-                            TypesDropdownButton(
+                            GradeDropdownButton(
+                              values: const ['Отчёты', 'Задачи'],
                               dropdownValue: state.page.type,
                               onChanged: (String? value) {
                                 context.read<PagesBloc>().add(
                                       PagesTypeChangedEvent(
-                                        value ?? PageTypes.students,
+                                        value ?? PageSections.students,
+                                      ),
+                                    );
+                              },
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: textWidth,
+                              child: const Text(
+                                'Выберите раздел',
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 15),
+                            GradeDropdownButton(
+                              values: const [
+                                'Студенты',
+                                'Преподаватели',
+                                'Дисциплины'
+                              ],
+                              dropdownValue: state.page.section,
+                              onChanged: (String? value) {
+                                context.read<PagesBloc>().add(
+                                      PagesSectionChangedEvent(
+                                        value ?? PageSections.students,
                                       ),
                                     );
                               },

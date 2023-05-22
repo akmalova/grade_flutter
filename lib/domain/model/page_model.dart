@@ -6,19 +6,23 @@ class PageModel extends HiveObject {
   final String type;
 
   @HiveField(1)
-  final String pageName;
+  final String section;
 
   @HiveField(2)
-  final String functionName;
+  final String pageName;
 
   @HiveField(3)
-  final List<String> parameters;
+  final String functionName;
 
   @HiveField(4)
+  final List<String> parameters;
+
+  @HiveField(5)
   final List<String> parametersTitles;
 
   PageModel({
     required this.type,
+    required this.section,
     required this.pageName,
     required this.functionName,
     required this.parameters,

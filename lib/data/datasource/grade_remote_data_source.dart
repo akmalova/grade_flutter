@@ -37,10 +37,36 @@ class GradeRemoteDataSource {
     String firstName,
     String secondName,
   ) async {
+    String request =
+        'SELECT accountid, vt.lastname, vt.firstname, vt.secondname, facultyname, jobpositionname, '
+        'email FROM view_teachers vt JOIN accounts a ON a.id = vt.accountid WHERE ';
+    if (lastName.isNotEmpty && firstName.isNotEmpty && secondName.isNotEmpty) {
+      request += 'vt.lastname = @lastname '
+          'AND vt.firstname = @firstname AND vt.secondname = @secondname';
+    } else if (lastName.isEmpty &&
+        firstName.isNotEmpty &&
+        secondName.isNotEmpty) {
+      request +=
+          'AND vt.firstname = @firstname AND vt.secondname = @secondname';
+    } else if (lastName.isNotEmpty &&
+        firstName.isEmpty &&
+        secondName.isNotEmpty) {
+      request += 'vt.lastname = @lastname AND vt.secondname = @secondname';
+    } else if (lastName.isNotEmpty &&
+        firstName.isNotEmpty &&
+        secondName.isEmpty) {
+      request += 'vt.lastname = @lastname AND vt.firstname = @firstname';
+    } else if (lastName.isNotEmpty && firstName.isEmpty && secondName.isEmpty) {
+      request += 'vt.lastname = @lastname';
+    } else if (lastName.isEmpty && firstName.isNotEmpty && secondName.isEmpty) {
+      request += 'AND vt.firstname = @firstname';
+    } else if (lastName.isEmpty && firstName.isEmpty && secondName.isNotEmpty) {
+      request += 'vt.secondname = @secondname';
+    }
+    request += ' ORDER BY vt.lastname';
+
     final result = await _connection.query(
-      'SELECT accountid, vt.lastname, vt.firstname, vt.secondname, facultyname, jobpositionname, '
-      'email FROM view_teachers vt JOIN accounts a ON a.id = vt.accountid WHERE vt.lastname = @lastname '
-      'AND vt.firstname = @firstname AND vt.secondname = @secondname ORDER BY vt.lastname',
+      request,
       substitutionValues: {
         'lastname': lastName,
         'firstname': firstName,
@@ -77,7 +103,11 @@ class GradeRemoteDataSource {
   }
 
   Future<dynamic> request(
-      String functionName, List<String> parameters, List<String> values) async {
+    String functionName,
+    List<String> parameters,
+    List<String> values, {
+    bool isReport = false,
+  }) async {
     String parametersString = "";
     Map<String, dynamic> valuesMap = {};
     for (int i = 0; i < parameters.length; i++) {
@@ -92,7 +122,7 @@ class GradeRemoteDataSource {
       'SELECT * FROM $functionName($parametersString)',
       substitutionValues: valuesMap,
     );
-    return result[0][0];
+    return isReport ? result[0][0] : result;
   }
 
   Future<int> transferTeacherData(String idFrom, String idTo) async {

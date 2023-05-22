@@ -17,7 +17,7 @@ class ChangeAccessBloc extends Bloc<ChangeAccessEvent, ChangeAccessState> {
             lastName: '',
             firstName: '',
             secondName: '',
-            userRole: '',
+            userRole: '2',
           ),
         ) {
     on<ChangeAccessGetTeachersEvent>(_getTeachers);
@@ -34,10 +34,9 @@ class ChangeAccessBloc extends Bloc<ChangeAccessEvent, ChangeAccessState> {
     try {
       final previuosState = state as ChangeAccessInitialState;
       emit(ChangeAccessInProgressState());
-      if (previuosState.lastName.isEmpty ||
-          previuosState.firstName.isEmpty ||
-          previuosState.secondName.isEmpty ||
-          previuosState.userRole.isEmpty) {
+      if (previuosState.lastName.isEmpty &&
+          previuosState.firstName.isEmpty &&
+          previuosState.secondName.isEmpty) {
         emit(previuosState.copyWith(isEmptyFields: true));
       } else {
         userRole = previuosState.userRole;
@@ -75,7 +74,7 @@ class ChangeAccessBloc extends Bloc<ChangeAccessEvent, ChangeAccessState> {
         lastName: '',
         firstName: '',
         secondName: '',
-        userRole: '',
+        userRole: '2',
       ),
     );
   }

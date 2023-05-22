@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grade/ui/common_widgets/grade_text_field.dart';
 import 'package:grade/ui/screens/reports/study_plans/bloc/study_plans_bloc.dart';
 import 'package:grade/ui/screens/reports/study_plans/widgets/study_plans_table.dart';
-import 'package:grade/ui/screens/tasks/edit_study_plan/bloc/edit_study_plan_bloc.dart';
 import 'package:grade/ui/utils/constants/app_colors.dart';
 import 'package:grade/ui/common_widgets/grade_app_bar.dart';
 import 'package:grade/ui/common_widgets/grade_button.dart';

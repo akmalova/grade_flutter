@@ -23,9 +23,8 @@ class SideMenu extends StatefulWidget {
 
 class _SideMenuState extends State<SideMenu> {
   final List<PageModel> _pages = [];
-  final List<PageModel> _studentsPages = [];
-  final List<PageModel> _teachersPages = [];
-  final List<PageModel> _disciplinesPages = [];
+  final List<List<PageModel>> _reports = [[], [], []];
+  final List<List<PageModel>> _tasks = [[], [], []];
 
   @override
   void initState() {
@@ -40,13 +39,11 @@ class _SideMenuState extends State<SideMenu> {
         if (state is PagesGetDataSuccessState) {
           setState(() {
             _pages.clear();
-            _studentsPages.clear();
-            _teachersPages.clear();
-            _disciplinesPages.clear();
+            _reports.clear();
+            _tasks.clear();
             _pages.addAll(state.pages);
-            _studentsPages.addAll(state.studentsPages);
-            _teachersPages.addAll(state.teachersPages);
-            _disciplinesPages.addAll(state.disciplinesPages);
+            _reports.addAll(state.reports);
+            _tasks.addAll(state.tasks);
           });
         }
       },
@@ -86,7 +83,7 @@ class _SideMenuState extends State<SideMenu> {
               icon: const Icon(
                 Icons.people,
               ),
-              title: PageTypes.students,
+              title: PageSections.students,
               children: [
                 SideMenuSubitem(
                   title: 'Рабочие планы студента',
@@ -97,9 +94,9 @@ class _SideMenuState extends State<SideMenu> {
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: _studentsPages.length,
+                  itemCount: _reports[0].length,
                   itemBuilder: (context, index) {
-                    PageModel page = _studentsPages[index];
+                    PageModel page = _reports[0][index];
                     return SideMenuSubitem(
                       title: page.pageName,
                       onTap: () {
@@ -114,14 +111,14 @@ class _SideMenuState extends State<SideMenu> {
               icon: const Icon(
                 Icons.people_alt_outlined,
               ),
-              title: PageTypes.teachers,
+              title: PageSections.teachers,
               children: [
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: _teachersPages.length,
+                  itemCount: _reports[1].length,
                   itemBuilder: (context, index) {
-                    PageModel page = _teachersPages[index];
+                    PageModel page = _reports[1][index];
                     return SideMenuSubitem(
                       title: page.pageName,
                       onTap: () {
@@ -136,14 +133,14 @@ class _SideMenuState extends State<SideMenu> {
               icon: const Icon(
                 Icons.collections_bookmark_outlined,
               ),
-              title: PageTypes.disciplines,
+              title: PageSections.disciplines,
               children: [
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: _disciplinesPages.length,
+                  itemCount: _reports[2].length,
                   itemBuilder: (context, index) {
-                    PageModel page = _disciplinesPages[index];
+                    PageModel page = _reports[2][index];
                     return SideMenuSubitem(
                       title: page.pageName,
                       onTap: () {
@@ -167,7 +164,7 @@ class _SideMenuState extends State<SideMenu> {
               icon: const Icon(
                 Icons.people,
               ),
-              title: PageTypes.students,
+              title: PageSections.students,
               children: [
                 SideMenuSubitem(
                   title: 'Редактировать рабочий план студента',
@@ -178,9 +175,9 @@ class _SideMenuState extends State<SideMenu> {
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: _studentsPages.length,
+                  itemCount: _tasks[0].length,
                   itemBuilder: (context, index) {
-                    PageModel page = _studentsPages[index];
+                    PageModel page = _tasks[0][index];
                     return SideMenuSubitem(
                       title: page.pageName,
                       onTap: () {
@@ -195,7 +192,7 @@ class _SideMenuState extends State<SideMenu> {
               icon: const Icon(
                 Icons.people_alt_outlined,
               ),
-              title: PageTypes.teachers,
+              title: PageSections.teachers,
               children: [
                 SideMenuSubitem(
                   title: 'Изменить право доступа преподавателя',
@@ -214,9 +211,9 @@ class _SideMenuState extends State<SideMenu> {
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: _teachersPages.length,
+                  itemCount: _tasks[1].length,
                   itemBuilder: (context, index) {
-                    PageModel page = _teachersPages[index];
+                    PageModel page = _tasks[1][index];
                     return SideMenuSubitem(
                       title: page.pageName,
                       onTap: () {
@@ -231,7 +228,7 @@ class _SideMenuState extends State<SideMenu> {
               icon: const Icon(
                 Icons.collections_bookmark_outlined,
               ),
-              title: PageTypes.disciplines,
+              title: PageSections.disciplines,
               children: [
                 SideMenuSubitem(
                   title: 'Очистить и разблокировать дисциплину',
@@ -242,9 +239,9 @@ class _SideMenuState extends State<SideMenu> {
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: _disciplinesPages.length,
+                  itemCount: _tasks[2].length,
                   itemBuilder: (context, index) {
-                    PageModel page = _disciplinesPages[index];
+                    PageModel page = _tasks[2][index];
                     return SideMenuSubitem(
                       title: page.pageName,
                       onTap: () {

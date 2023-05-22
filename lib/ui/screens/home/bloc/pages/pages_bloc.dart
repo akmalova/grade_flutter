@@ -14,6 +14,7 @@ class PagesBloc extends Bloc<PagesEvent, PagesState> {
     on<PagesGetDataEvent>(_getData);
     on<PagesSaveEvent>(_save);
     on<PagesTypeChangedEvent>(_typeChanged);
+    on<PagesSectionChangedEvent>(_sectionChanged);
     on<PagesNameChangedEvent>(_nameChanged);
     on<PagesFunctionNameChangedEvent>(_functionNameChanged);
     on<PagesParametersTitlesChangedEvent>(_parametersTitlesChanged);
@@ -27,29 +28,42 @@ class PagesBloc extends Bloc<PagesEvent, PagesState> {
   Future<void> _getData(PagesGetDataEvent event, Emitter emit) async {
     emit(PagesGetDataInProgressState());
     final List<PageModel> pages = await pageRepository.fetchPages();
-    List<PageModel> studentsPages = [];
-    List<PageModel> teachersPages = [];
-    List<PageModel> disciplinesPages = [];
+    List<List<PageModel>> reports = [[], [], []];
+    List<List<PageModel>> tasks = [[], [], []];
     for (PageModel page in pages) {
-      switch (page.type) {
-        case PageTypes.students:
-          studentsPages.add(page);
-          break;
-        case PageTypes.teachers:
-          teachersPages.add(page);
-          break;
-        case PageTypes.disciplines:
-          disciplinesPages.add(page);
-          break;
-        default:
+      if (page.type == PageTypes.reports) {
+        switch (page.section) {
+          case PageSections.students:
+            reports[0].add(page);
+            break;
+          case PageSections.teachers:
+            reports[1].add(page);
+            break;
+          case PageSections.disciplines:
+            reports[2].add(page);
+            break;
+          default:
+        }
+      } else {
+        switch (page.section) {
+          case PageSections.students:
+            tasks[0].add(page);
+            break;
+          case PageSections.teachers:
+            tasks[1].add(page);
+            break;
+          case PageSections.disciplines:
+            tasks[2].add(page);
+            break;
+          default:
+        }
       }
     }
     emit(
       PagesGetDataSuccessState(
         pages: pages,
-        studentsPages: studentsPages,
-        teachersPages: teachersPages,
-        disciplinesPages: disciplinesPages,
+        reports: reports,
+        tasks: tasks,
       ),
     );
   }
@@ -59,12 +73,27 @@ class PagesBloc extends Bloc<PagesEvent, PagesState> {
     emit(PagesSaveInProgressState());
     if (previuosState.page.pageName.isEmpty ||
         previuosState.page.functionName.isEmpty) {
-      emit(PagesSaveInitialState(
-        isEmptyFields: true,
-        page: previuosState.page,
-      ));
+      emit(
+        PagesSaveInitialState(
+          isEmptyFields: true,
+          page: previuosState.page,
+        ),
+      );
     } else {
-      pageRepository.savePage(previuosState.page);
+      if (previuosState.page.parameters[0].isEmpty) {
+        pageRepository.savePage(
+          PageModel(
+            type: previuosState.page.type,
+            section: previuosState.page.section,
+            pageName: previuosState.page.pageName,
+            functionName: previuosState.page.functionName,
+            parameters: [],
+            parametersTitles: [],
+          ),
+        );
+      } else {
+        pageRepository.savePage(previuosState.page);
+      }
       emit(PagesSaveSuccessState());
     }
   }
@@ -75,6 +104,23 @@ class PagesBloc extends Bloc<PagesEvent, PagesState> {
       PagesSaveInitialState(
         page: PageModel(
           type: event.pageType,
+          section: previuosState.page.section,
+          pageName: previuosState.page.pageName,
+          functionName: previuosState.page.functionName,
+          parameters: previuosState.page.parameters,
+          parametersTitles: previuosState.page.parametersTitles,
+        ),
+      ),
+    );
+  }
+
+  void _sectionChanged(PagesSectionChangedEvent event, Emitter emit) {
+    final previuosState = state as PagesSaveInitialState;
+    emit(
+      PagesSaveInitialState(
+        page: PageModel(
+          type: previuosState.page.type,
+          section: event.pageSection,
           pageName: previuosState.page.pageName,
           functionName: previuosState.page.functionName,
           parameters: previuosState.page.parameters,
@@ -90,6 +136,7 @@ class PagesBloc extends Bloc<PagesEvent, PagesState> {
       PagesSaveInitialState(
         page: PageModel(
           type: previuosState.page.type,
+          section: previuosState.page.section,
           pageName: event.pageName,
           functionName: previuosState.page.functionName,
           parameters: previuosState.page.parameters,
@@ -105,6 +152,7 @@ class PagesBloc extends Bloc<PagesEvent, PagesState> {
       PagesSaveInitialState(
         page: PageModel(
           type: previuosState.page.type,
+          section: previuosState.page.section,
           pageName: previuosState.page.pageName,
           functionName: event.functionName,
           parameters: previuosState.page.parameters,
@@ -160,7 +208,8 @@ class PagesBloc extends Bloc<PagesEvent, PagesState> {
     emit(
       PagesSaveInitialState(
         page: PageModel(
-          type: PageTypes.students,
+          type: PageTypes.tasks,
+          section: PageSections.students,
           pageName: '',
           functionName: '',
           parameters: [''],
