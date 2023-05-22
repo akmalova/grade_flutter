@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grade/ui/screens/edit_study_plan/bloc/edit_study_plan_bloc.dart';
-import 'package:grade/ui/screens/edit_study_plan/widgets/study_plans_table.dart';
+import 'package:grade/ui/screens/tasks/edit_study_plan/bloc/edit_study_plan_bloc.dart';
 import 'package:grade/ui/utils/constants/app_colors.dart';
 import 'package:grade/ui/common_widgets/grade_app_bar.dart';
 import 'package:grade/ui/common_widgets/grade_button.dart';
@@ -50,50 +49,6 @@ class _EditStudyPlanScreenState extends State<EditStudyPlanScreen> {
                         .read<EditStudyPlanBloc>()
                         .add(EditPlanOpenInitialEvent());
                   },
-                );
-              } else if (state is EditPlanPlansNotFoundState) {
-                return GradeErrorWidget(
-                  description: 'Не удалось найти рабочие планы',
-                  onTap: () {
-                    context
-                        .read<EditStudyPlanBloc>()
-                        .add(EditPlanOpenInitialEvent());
-                  },
-                );
-              } else if (state is EditPlanGetPlansSuccessState) {
-                return GradeContainer(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      StudyPlansTable(
-                        studyPlans: state.studyPlans,
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          GradeButton(
-                            title: 'Назад',
-                            onTap: () {
-                              context
-                                  .read<EditStudyPlanBloc>()
-                                  .add(EditPlanOpenInitialEvent());
-                            },
-                          ),
-                          const SizedBox(width: 15),
-                          GradeButton(
-                            title: 'Далее',
-                            onTap: () {
-                              context
-                                  .read<EditStudyPlanBloc>()
-                                  .add(EditPlanPerformEvent());
-                            },
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
                 );
               } else {
                 return GradeContainer(
@@ -164,7 +119,7 @@ class _EditStudyPlanScreenState extends State<EditStudyPlanScreen> {
                         onTap: () {
                           context
                               .read<EditStudyPlanBloc>()
-                              .add(EditPlanGetPlansEvent());
+                              .add(EditPlanPerformEvent());
                         },
                       ),
                     ],

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grade/ui/screens/unlock_discipline/bloc/unlock_discipline_bloc.dart';
 import 'package:grade/ui/common_widgets/grade_app_bar.dart';
 import 'package:grade/ui/common_widgets/grade_button.dart';
 import 'package:grade/ui/common_widgets/grade_container.dart';
 import 'package:grade/ui/common_widgets/grade_error_widget.dart';
 import 'package:grade/ui/common_widgets/grade_text_field.dart';
 import 'package:grade/ui/common_widgets/grade_success_widget.dart';
+import 'package:grade/ui/screens/tasks/unlock_discipline/bloc/unlock_discipline_bloc.dart';
 import 'package:grade/ui/utils/constants/app_colors.dart';
 
 class UnlockDisciplineScreen extends StatelessWidget {

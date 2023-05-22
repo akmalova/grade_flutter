@@ -20,6 +20,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState>
     on<HomeChangeAccessEvent>(_changeAccess);
     on<HomeTransferTeacherDataEvent>(_transferTeacherData);
     on<HomeEditStudyPlanEvent>(_editStudyPlan);
+    on<HomeStudyPlansEvent>(_studyPlans);
     on<HomeAddPageEvent>(_addPage);
     on<HomeDeletePageEvent>(_deletePage);
     on<HomePatternEvent>(_pattern);
@@ -54,6 +55,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState>
 
   void _editStudyPlan(HomeEditStudyPlanEvent event, Emitter emit) {
     emit(HomeEditStudyPlanState());
+  }
+
+  void _studyPlans(HomeStudyPlansEvent event, Emitter emit) {
+    emit(HomeStudyPlansState());
   }
 
   void _addPage(HomeAddPageEvent event, Emitter emit) {

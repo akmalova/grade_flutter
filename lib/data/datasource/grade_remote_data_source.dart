@@ -53,11 +53,11 @@ class GradeRemoteDataSource {
       teachersList.add(
         TeacherModel(
           id: element[0],
-          lastName: element[1],
-          firstName: element[2],
-          secondName: element[3],
-          facultyName: element[4],
-          jobPositionName: element[5],
+          lastName: element[1] ?? '',
+          firstName: element[2] ?? '',
+          secondName: element[3] ?? '',
+          facultyName: element[4] ?? '',
+          jobPositionName: element[5] ?? '',
           email: element[6] ?? '',
         ),
       );
@@ -118,10 +118,10 @@ class GradeRemoteDataSource {
     for (var element in result) {
       plansList.add(
         StudyPlanModel(
-          email: element[0],
-          lastName: element[1],
-          firstName: element[2],
-          secondName: element[3],
+          email: element[0] ?? '',
+          lastName: element[1] ?? '',
+          firstName: element[2] ?? '',
+          secondName: element[3] ?? '',
           studyPlanId: element[4],
           year: element[5],
         ),

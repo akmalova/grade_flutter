@@ -1,7 +1,7 @@
 {
-    "host": "grade-dev.mmcs.sfedu.ru",
-    "port": 5673,
-    "databaseName": "testgrade",
-    "username": "testgrade",
-    "password": "f*nd3nGHQ5jgNP"
+    "host": "localhost",
+    "port": 5432,
+    "databaseName": "grade",
+    "username": "postgres",
+    "password": ""
 }

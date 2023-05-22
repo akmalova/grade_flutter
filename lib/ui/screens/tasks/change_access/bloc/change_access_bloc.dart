@@ -61,13 +61,8 @@ class ChangeAccessBloc extends Bloc<ChangeAccessEvent, ChangeAccessState> {
   Future<void> _perform(ChangeAccessPerformEvent event, Emitter emit) async {
     try {
       emit(ChangeAccessInProgressState());
-      final result = await gradeRepository.changeAccess(event.id, userRole);
-      
-      if (result != -1) {
-        emit(ChangeAccessSuccessState());
-      } else {
-        emit(ChangeAccessErrorState());
-      }
+      await gradeRepository.changeAccess(event.id, userRole);
+      emit(ChangeAccessSuccessState());
     } on PostgreSQLException catch (e) {
       emit(ChangeAccessErrorState());
       debugPrint(e.toString());

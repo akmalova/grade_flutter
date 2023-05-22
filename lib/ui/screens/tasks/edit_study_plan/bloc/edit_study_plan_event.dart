@@ -3,8 +3,6 @@ part of 'edit_study_plan_bloc.dart';
 @immutable
 abstract class EditStudyPlanEvent {}
 
-class EditPlanGetPlansEvent implements EditStudyPlanEvent {}
-
 class EditPlanPerformEvent implements EditStudyPlanEvent {}
 
 class EditPlanOpenInitialEvent implements EditStudyPlanEvent {}

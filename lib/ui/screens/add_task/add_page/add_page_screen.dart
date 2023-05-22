@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grade/domain/model/page_types.dart';
-import 'package:grade/ui/screens/add_page/widgets/types_dropdown_button.dart';
+import 'package:grade/ui/screens/add_task/add_page/widgets/types_dropdown_button.dart';
 import 'package:grade/ui/screens/home/bloc/pages/pages_bloc.dart';
 import 'package:grade/ui/utils/constants/app_colors.dart';
 import 'package:grade/ui/common_widgets/grade_app_bar.dart';

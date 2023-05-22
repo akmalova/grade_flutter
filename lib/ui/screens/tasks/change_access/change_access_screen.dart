@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grade/ui/screens/change_access/bloc/change_access_bloc.dart';
-import 'package:grade/ui/screens/change_access/widgets/teachers_table.dart';
+import 'package:grade/ui/screens/tasks/change_access/bloc/change_access_bloc.dart';
+import 'package:grade/ui/screens/tasks/change_access/widgets/teachers_table.dart';
 import 'package:grade/ui/utils/constants/app_colors.dart';
 import 'package:grade/ui/common_widgets/grade_app_bar.dart';
 import 'package:grade/ui/common_widgets/grade_button.dart';

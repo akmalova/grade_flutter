@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grade/ui/screens/transfer_teacher_data/bloc/transfer_teacher_data_bloc.dart';
+import 'package:grade/ui/screens/tasks/transfer_teacher_data/bloc/transfer_teacher_data_bloc.dart';
 import 'package:grade/ui/utils/constants/app_colors.dart';
 import 'package:grade/ui/common_widgets/grade_app_bar.dart';
 import 'package:grade/ui/common_widgets/grade_button.dart';
@@ -59,7 +59,7 @@ class _TransferTeacherDataScreenState extends State<TransferTeacherDataScreen> {
                     children: [
                       TextFieldRow(
                         title:
-                            'Введите идентификатор аккаунта, который нужно удалить',
+                            'Введите номер карточки аккаунта, который нужно удалить',
                         hint: 'Идентификатор',
                         onChanged: (value) {
                           context.read<TransferTeacherDataBloc>().add(
@@ -71,7 +71,7 @@ class _TransferTeacherDataScreenState extends State<TransferTeacherDataScreen> {
                       const SizedBox(height: 15),
                       TextFieldRow(
                         title:
-                            'Введите идентификатор аккаунта, который нужно оставить',
+                            'Введите номер карточки аккаунта, который нужно оставить',
                         hint: 'Идентификатор',
                         onChanged: (value) {
                           context

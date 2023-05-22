@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grade/domain/model/page_model.dart';
-import 'package:grade/ui/screens/pattern/bloc/pattern_bloc.dart';
+import 'package:grade/ui/screens/add_task/pattern/bloc/pattern_bloc.dart';
 import 'package:grade/ui/common_widgets/grade_app_bar.dart';
 import 'package:grade/ui/common_widgets/grade_button.dart';
 import 'package:grade/ui/common_widgets/grade_container.dart';

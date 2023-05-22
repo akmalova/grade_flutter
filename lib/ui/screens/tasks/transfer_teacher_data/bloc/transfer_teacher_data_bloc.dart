@@ -35,12 +35,7 @@ class TransferTeacherDataBloc
           previousState.teacherIdFrom,
           previousState.teacherIdTo,
         );
-
-        if (result != -1) {
-          emit(TransferDataSuccessState(result));
-        } else {
-          emit(TransferDataErrorState());
-        }
+        emit(TransferDataSuccessState(result));
       }
     } on PostgreSQLException catch (e) {
       emit(TransferDataErrorState());

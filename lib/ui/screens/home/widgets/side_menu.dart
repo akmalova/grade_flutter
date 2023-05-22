@@ -74,127 +74,204 @@ class _SideMenuState extends State<SideMenu> {
                 SizedBox(height: 30),
               ],
             ),
-            Column(
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: Text(
+                'Отчёты',
+                style: TextStyle(color: AppColors.grey2),
+              ),
+            ),
+            const Divider(),
+            SideMenuItem(
+              icon: const Icon(
+                Icons.people,
+              ),
+              title: PageTypes.students,
               children: [
-                SideMenuItem(
-                  icon: const Icon(
-                    Icons.people,
-                  ),
-                  title: PageTypes.students,
-                  children: [
-                    SideMenuSubitem(
-                      title: 'Редактировать рабочий план студента',
-                      onTap: () {
-                        context.read<HomeBloc>().add(HomeEditStudyPlanEvent());
-                      },
-                    ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: _studentsPages.length,
-                      itemBuilder: (context, index) {
-                        PageModel page = _studentsPages[index];
-                        return SideMenuSubitem(
-                          title: page.pageName,
-                          onTap: () {
-                            context
-                                .read<HomeBloc>()
-                                .add(HomePatternEvent(page));
-                          },
-                        );
-                      },
-                    ),
-                  ],
-                ),
-                SideMenuItem(
-                  icon: const Icon(
-                    Icons.people_alt_outlined,
-                  ),
-                  title: PageTypes.teachers,
-                  children: [
-                    SideMenuSubitem(
-                      title: 'Изменить право доступа преподавателя',
-                      onTap: () {
-                        context.read<HomeBloc>().add(HomeChangeAccessEvent());
-                      },
-                    ),
-                    SideMenuSubitem(
-                      title: 'Объединить аккаунты преподавателя',
-                      onTap: () {
-                        context
-                            .read<HomeBloc>()
-                            .add(HomeTransferTeacherDataEvent());
-                      },
-                    ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: _teachersPages.length,
-                      itemBuilder: (context, index) {
-                        PageModel page = _teachersPages[index];
-                        return SideMenuSubitem(
-                          title: page.pageName,
-                          onTap: () {
-                            context
-                                .read<HomeBloc>()
-                                .add(HomePatternEvent(page));
-                          },
-                        );
-                      },
-                    ),
-                  ],
-                ),
-                SideMenuItem(
-                  icon: const Icon(
-                    Icons.collections_bookmark_outlined,
-                  ),
-                  title: PageTypes.disciplines,
-                  children: [
-                    SideMenuSubitem(
-                      title: 'Очистить и разблокировать дисциплину',
-                      onTap: () {
-                        context
-                            .read<HomeBloc>()
-                            .add(HomeUnlockDisciplineEvent());
-                      },
-                    ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: _disciplinesPages.length,
-                      itemBuilder: (context, index) {
-                        PageModel page = _disciplinesPages[index];
-                        return SideMenuSubitem(
-                          title: page.pageName,
-                          onTap: () {
-                            context
-                                .read<HomeBloc>()
-                                .add(HomePatternEvent(page));
-                          },
-                        );
-                      },
-                    ),
-                  ],
-                ),
-                const Divider(
-                  height: 40,
-                ),
-                GradeTextButton(
-                  title: 'Добавить задачу',
-                  icon: Icons.add,
+                SideMenuSubitem(
+                  title: 'Рабочие планы студента',
                   onTap: () {
-                    context.read<HomeBloc>().add(HomeAddPageEvent());
+                    context.read<HomeBloc>().add(HomeStudyPlansEvent());
                   },
                 ),
-                const SizedBox(height: 20),
-                GradeTextButton(
-                  title: 'Удалить задачу',
-                  icon: Icons.delete,
-                  onTap: () {
-                    context.read<HomeBloc>().add(HomeDeletePageEvent());
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: _studentsPages.length,
+                  itemBuilder: (context, index) {
+                    PageModel page = _studentsPages[index];
+                    return SideMenuSubitem(
+                      title: page.pageName,
+                      onTap: () {
+                        context.read<HomeBloc>().add(HomePatternEvent(page));
+                      },
+                    );
                   },
                 ),
               ],
+            ),
+            SideMenuItem(
+              icon: const Icon(
+                Icons.people_alt_outlined,
+              ),
+              title: PageTypes.teachers,
+              children: [
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: _teachersPages.length,
+                  itemBuilder: (context, index) {
+                    PageModel page = _teachersPages[index];
+                    return SideMenuSubitem(
+                      title: page.pageName,
+                      onTap: () {
+                        context.read<HomeBloc>().add(HomePatternEvent(page));
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
+            SideMenuItem(
+              icon: const Icon(
+                Icons.collections_bookmark_outlined,
+              ),
+              title: PageTypes.disciplines,
+              children: [
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: _disciplinesPages.length,
+                  itemBuilder: (context, index) {
+                    PageModel page = _disciplinesPages[index];
+                    return SideMenuSubitem(
+                      title: page.pageName,
+                      onTap: () {
+                        context.read<HomeBloc>().add(HomePatternEvent(page));
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 15),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: Text(
+                'Задачи',
+                style: TextStyle(color: AppColors.grey2),
+              ),
+            ),
+            const Divider(),
+            SideMenuItem(
+              icon: const Icon(
+                Icons.people,
+              ),
+              title: PageTypes.students,
+              children: [
+                SideMenuSubitem(
+                  title: 'Редактировать рабочий план студента',
+                  onTap: () {
+                    context.read<HomeBloc>().add(HomeEditStudyPlanEvent());
+                  },
+                ),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: _studentsPages.length,
+                  itemBuilder: (context, index) {
+                    PageModel page = _studentsPages[index];
+                    return SideMenuSubitem(
+                      title: page.pageName,
+                      onTap: () {
+                        context.read<HomeBloc>().add(HomePatternEvent(page));
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
+            SideMenuItem(
+              icon: const Icon(
+                Icons.people_alt_outlined,
+              ),
+              title: PageTypes.teachers,
+              children: [
+                SideMenuSubitem(
+                  title: 'Изменить право доступа преподавателя',
+                  onTap: () {
+                    context.read<HomeBloc>().add(HomeChangeAccessEvent());
+                  },
+                ),
+                SideMenuSubitem(
+                  title: 'Объединить аккаунты преподавателя',
+                  onTap: () {
+                    context
+                        .read<HomeBloc>()
+                        .add(HomeTransferTeacherDataEvent());
+                  },
+                ),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: _teachersPages.length,
+                  itemBuilder: (context, index) {
+                    PageModel page = _teachersPages[index];
+                    return SideMenuSubitem(
+                      title: page.pageName,
+                      onTap: () {
+                        context.read<HomeBloc>().add(HomePatternEvent(page));
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
+            SideMenuItem(
+              icon: const Icon(
+                Icons.collections_bookmark_outlined,
+              ),
+              title: PageTypes.disciplines,
+              children: [
+                SideMenuSubitem(
+                  title: 'Очистить и разблокировать дисциплину',
+                  onTap: () {
+                    context.read<HomeBloc>().add(HomeUnlockDisciplineEvent());
+                  },
+                ),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: _disciplinesPages.length,
+                  itemBuilder: (context, index) {
+                    PageModel page = _disciplinesPages[index];
+                    return SideMenuSubitem(
+                      title: page.pageName,
+                      onTap: () {
+                        context.read<HomeBloc>().add(HomePatternEvent(page));
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
+            const Divider(
+              height: 40,
+            ),
+            GradeTextButton(
+              title: 'Добавить задачу',
+              icon: Icons.add,
+              onTap: () {
+                context.read<HomeBloc>().add(HomeAddPageEvent());
+              },
+            ),
+            const SizedBox(height: 20),
+            GradeTextButton(
+              title: 'Удалить задачу',
+              icon: Icons.delete,
+              onTap: () {
+                context.read<HomeBloc>().add(HomeDeletePageEvent());
+              },
             ),
           ],
         ),

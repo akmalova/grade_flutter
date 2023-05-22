@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grade/ui/screens/delete_page/widgets/pages_table.dart';
+import 'package:grade/ui/screens/add_task/delete_page/widgets/pages_table.dart';
 import 'package:grade/ui/screens/home/bloc/pages/pages_bloc.dart';
 import 'package:grade/ui/common_widgets/grade_app_bar.dart';
 import 'package:grade/ui/common_widgets/grade_container.dart';

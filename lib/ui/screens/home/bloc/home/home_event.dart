@@ -13,6 +13,8 @@ class HomeTransferTeacherDataEvent implements HomeEvent {}
 
 class HomeEditStudyPlanEvent implements HomeEvent {}
 
+class HomeStudyPlansEvent implements HomeEvent {}
+
 class HomeAddPageEvent implements HomeEvent {}
 
 class HomeDeletePageEvent implements HomeEvent {}
