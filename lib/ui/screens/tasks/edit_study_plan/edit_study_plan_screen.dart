@@ -56,8 +56,8 @@ class _EditStudyPlanScreenState extends State<EditStudyPlanScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       TextFieldRow(
-                        title: 'Введите id зачетной книжки',
-                        hint: 'Идентификатор зачетной книжки',
+                        title: 'Введите номер зачетной книжки',
+                        hint: 'Номер зачетной книжки',
                         onChanged: (value) {
                           context
                               .read<EditStudyPlanBloc>()

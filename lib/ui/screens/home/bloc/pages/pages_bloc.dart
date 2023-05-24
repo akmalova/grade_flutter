@@ -80,20 +80,7 @@ class PagesBloc extends Bloc<PagesEvent, PagesState> {
         ),
       );
     } else {
-      if (previuosState.page.parameters[0].isEmpty) {
-        pageRepository.savePage(
-          PageModel(
-            type: previuosState.page.type,
-            section: previuosState.page.section,
-            pageName: previuosState.page.pageName,
-            functionName: previuosState.page.functionName,
-            parameters: [],
-            parametersTitles: [],
-          ),
-        );
-      } else {
-        pageRepository.savePage(previuosState.page);
-      }
+      pageRepository.savePage(previuosState.page);
       emit(PagesSaveSuccessState());
     }
   }

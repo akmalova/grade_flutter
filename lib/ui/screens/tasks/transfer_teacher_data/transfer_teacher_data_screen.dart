@@ -60,7 +60,7 @@ class _TransferTeacherDataScreenState extends State<TransferTeacherDataScreen> {
                       TextFieldRow(
                         title:
                             'Введите номер карточки аккаунта, который нужно удалить',
-                        hint: 'Идентификатор',
+                        hint: 'Номер карточки',
                         onChanged: (value) {
                           context.read<TransferTeacherDataBloc>().add(
                               TransferDataTeacherIdFromChangedEvent(value));
@@ -72,7 +72,7 @@ class _TransferTeacherDataScreenState extends State<TransferTeacherDataScreen> {
                       TextFieldRow(
                         title:
                             'Введите номер карточки аккаунта, который нужно оставить',
-                        hint: 'Идентификатор',
+                        hint: 'Номер карточки',
                         onChanged: (value) {
                           context
                               .read<TransferTeacherDataBloc>()
