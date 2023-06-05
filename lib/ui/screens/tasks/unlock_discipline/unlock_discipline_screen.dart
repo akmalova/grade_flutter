@@ -15,7 +15,7 @@ class UnlockDisciplineScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GradeAppBar(title: 'Очистить и разблокировать дисциплину'),
+      appBar: const GradeAppBar(title: 'Разблокировать дисциплину'),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Center(
@@ -28,7 +28,7 @@ class UnlockDisciplineScreen extends StatelessWidget {
               } else if (state is UnlockDisciplineSuccessState) {
                 return GradeSuccessWidget(
                   description:
-                      'Дисциплина успешно очищена и разблокирована\nУдалено ${state.rowCount} записей',
+                      'Дисциплина успешно разблокирована\nУдалено ${state.rowCount} записей',
                   onTap: () {
                     context
                         .read<UnlockDisciplineBloc>()
@@ -38,7 +38,7 @@ class UnlockDisciplineScreen extends StatelessWidget {
               } else if (state is UnlockDisciplineErrorState) {
                 return GradeErrorWidget(
                   description:
-                      'Не удалось очистить и разблокировать дисциплину',
+                      'Не удалось разблокировать дисциплину',
                   onTap: () {
                     context
                         .read<UnlockDisciplineBloc>()
@@ -76,7 +76,7 @@ class UnlockDisciplineScreen extends StatelessWidget {
                         ),
                       const SizedBox(height: 10),
                       GradeButton(
-                        title: 'Готово',
+                        title: 'Выполнить',
                         onTap: () {
                           context.read<UnlockDisciplineBloc>().add(
                                 UnlockDisciplinePerformEvent(),

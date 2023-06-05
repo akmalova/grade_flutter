@@ -90,7 +90,7 @@ class PatternScreen extends StatelessWidget {
                           },
                         ),
                         GradeButton(
-                          title: 'Готово',
+                          title: 'Выполнить',
                           onTap: () {
                             List<String> values = [];
                             for (TextEditingController controller

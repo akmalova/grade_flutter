@@ -115,7 +115,7 @@ class _EditStudyPlanScreenState extends State<EditStudyPlanScreen> {
                         ),
                       const SizedBox(height: 10),
                       GradeButton(
-                        title: 'Готово',
+                        title: 'Выполнить',
                         onTap: () {
                           context
                               .read<EditStudyPlanBloc>()

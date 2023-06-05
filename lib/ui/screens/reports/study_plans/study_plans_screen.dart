@@ -77,7 +77,7 @@ class _StudyPlansScreenState extends State<StudyPlansScreen> {
                         ),
                       const SizedBox(height: 10),
                       GradeButton(
-                        title: 'Готово',
+                        title: 'Выполнить',
                         onTap: () {
                           context
                               .read<StudyPlansBloc>()

@@ -120,7 +120,7 @@ class _AddPageScreenState extends State<AddPageScreen> {
                         const SizedBox(height: 15),
                         TextFieldRow(
                           title: 'Введите название задачи',
-                          hint: 'Очистить и разблокировать дисциплину',
+                          hint: 'Разблокировать дисциплину',
                           onChanged: (value) {
                             context
                                 .read<PagesBloc>()
@@ -237,7 +237,7 @@ class _AddPageScreenState extends State<AddPageScreen> {
                         const SizedBox(height: 10),
                         Center(
                           child: GradeButton(
-                            title: 'Готово',
+                            title: 'Выполнить',
                             onTap: () async {
                               context.read<PagesBloc>().add(PagesSaveEvent());
                             },

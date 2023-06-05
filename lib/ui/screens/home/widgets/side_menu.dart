@@ -231,7 +231,7 @@ class _SideMenuState extends State<SideMenu> {
               title: PageSections.disciplines,
               children: [
                 SideMenuSubitem(
-                  title: 'Очистить и разблокировать дисциплину',
+                  title: 'Разблокировать дисциплину',
                   onTap: () {
                     context.read<HomeBloc>().add(HomeUnlockDisciplineEvent());
                   },

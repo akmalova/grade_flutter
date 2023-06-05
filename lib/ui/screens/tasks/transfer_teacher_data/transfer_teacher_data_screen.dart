@@ -93,7 +93,7 @@ class _TransferTeacherDataScreenState extends State<TransferTeacherDataScreen> {
                         ),
                       const SizedBox(height: 10),
                       GradeButton(
-                        title: 'Готово',
+                        title: 'Выполнить',
                         onTap: () {
                           context
                               .read<TransferTeacherDataBloc>()

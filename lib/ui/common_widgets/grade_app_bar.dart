@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grade/ui/screens/home/bloc/home/home_bloc.dart';
 import 'package:grade/ui/utils/constants/app_colors.dart';
+import 'package:open_filex/open_filex.dart';
 
 class GradeAppBar extends StatelessWidget with PreferredSizeWidget {
   final String title;
@@ -25,6 +26,21 @@ class GradeAppBar extends StatelessWidget with PreferredSizeWidget {
           context.read<HomeBloc>().add(HomeMenuPressedEvent());
         },
       ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: IconButton(
+            icon: const Icon(
+              Icons.help_outline,
+              color: AppColors.grey3,
+              size: 25,
+            ),
+            onPressed: () {
+              OpenFilex.open('user_manual.pdf');
+            },
+          ),
+        ),
+      ],
       centerTitle: true,
       title: Text(
         title,

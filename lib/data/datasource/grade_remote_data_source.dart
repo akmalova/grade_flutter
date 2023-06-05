@@ -127,7 +127,7 @@ class GradeRemoteDataSource {
 
   Future<int> transferTeacherData(String idFrom, String idTo) async {
     final result = await _connection.query(
-      'SELECT * FROM merge_accounts(@idFrom, @idTo)',
+      'SELECT * FROM merge_teacher_accounts(@idFrom, @idTo)',
       substitutionValues: {
         'idFrom': idFrom,
         'idTo': idTo,

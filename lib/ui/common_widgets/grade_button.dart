@@ -23,7 +23,7 @@ class GradeButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding:
-            padding ?? const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
+            padding ?? const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
         decoration: BoxDecoration(
           color: backgroundColor ?? AppColors.blue,
           borderRadius: const BorderRadius.all(Radius.circular(20)),

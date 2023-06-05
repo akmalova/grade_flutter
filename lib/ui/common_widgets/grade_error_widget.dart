@@ -61,7 +61,7 @@ class GradeErrorWidget extends StatelessWidget {
           const Divider(),
           const SizedBox(height: 15),
           GradeButton(
-            title: 'Попробовать еще раз',
+            title: 'Вернуться',
             onTap: onTap,
           )
         ],

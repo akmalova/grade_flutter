@@ -45,7 +45,7 @@ dependencies:
   flutter_svg: ^2.0.4
   side_effect_bloc:
     path: side_effect_bloc
-  syncfusion_flutter_datagrid: ^21.1.38
+  open_filex: ^4.3.2
 
 dev_dependencies:
   flutter_test:

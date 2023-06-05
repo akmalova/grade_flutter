@@ -21,6 +21,7 @@ class ChangeAccessScreen extends StatefulWidget {
 class _ChangeAccessScreenState extends State<ChangeAccessScreen> {
   late double textWidth;
   late double textFieldWidth;
+  late double tableWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -160,7 +161,7 @@ class _ChangeAccessScreenState extends State<ChangeAccessScreen> {
                         ),
                       const SizedBox(height: 10),
                       GradeButton(
-                        title: 'Готово',
+                        title: 'Найти преподавателей',
                         onTap: () {
                           context.read<ChangeAccessBloc>().add(
                                 ChangeAccessGetTeachersEvent(),
@@ -189,6 +190,11 @@ class _ChangeAccessScreenState extends State<ChangeAccessScreen> {
     } else {
       textWidth = 150;
       textFieldWidth = 210;
+    }
+
+    tableWidth = screenWidth;
+    if (screenWidth > 950) {
+      tableWidth -= 400;
     }
   }
 }
