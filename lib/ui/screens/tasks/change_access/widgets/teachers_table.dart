@@ -4,12 +4,14 @@ import 'package:grade/ui/utils/constants/app_colors.dart';
 
 class TeachersTable extends StatelessWidget {
   final List<TeacherModel> teachers;
-  final Function(TeacherModel) onPressed;
+  final Function(TeacherModel)? onPressed;
+  final bool needButton;
 
   const TeachersTable({
     super.key,
     required this.teachers,
-    required this.onPressed,
+    this.onPressed,
+    this.needButton = true,
   });
 
   @override
@@ -31,7 +33,7 @@ class TeachersTable extends StatelessWidget {
       'Факультет',
       'Должность',
       'Почта',
-      '',
+      if (needButton) '',
     ];
     List<DataColumn> dataColumnList = [];
     for (String column in columns) {
@@ -113,23 +115,26 @@ class TeachersTable extends StatelessWidget {
                 ),
               ),
             ),
-            DataCell(
-              TextButton(
-                onPressed: () {
-                  onPressed(teacher);
-                },
-                style: ButtonStyle(
-                  overlayColor: MaterialStateProperty.all(Colors.transparent),
-                ),
-                child: const Text(
-                  'Выбрать',
-                  style: TextStyle(
-                    color: AppColors.blue,
-                    fontSize: 14,
+            if (needButton)
+              DataCell(
+                TextButton(
+                  onPressed: () {
+                    if (onPressed != null) {
+                      onPressed!(teacher);
+                    }
+                  },
+                  style: ButtonStyle(
+                    overlayColor: MaterialStateProperty.all(Colors.transparent),
+                  ),
+                  child: const Text(
+                    'Выбрать',
+                    style: TextStyle(
+                      color: AppColors.blue,
+                      fontSize: 14,
+                    ),
                   ),
                 ),
               ),
-            ),
           ],
         ),
       );

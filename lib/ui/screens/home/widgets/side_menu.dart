@@ -113,6 +113,12 @@ class _SideMenuState extends State<SideMenu> {
               ),
               title: PageSections.teachers,
               children: [
+                 SideMenuSubitem(
+                  title: 'Найти информацию о преподавателях',
+                  onTap: () {
+                    context.read<HomeBloc>().add(HomeTeacherInfoEvent());
+                  },
+                ),
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),

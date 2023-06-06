@@ -13,12 +13,13 @@ class HomeTransferTeacherDataEvent implements HomeEvent {}
 
 class HomeEditStudyPlanEvent implements HomeEvent {}
 
+class HomeTeacherInfoEvent implements HomeEvent {}
+
 class HomeStudyPlansEvent implements HomeEvent {}
 
 class HomeAddPageEvent implements HomeEvent {}
 
 class HomeDeletePageEvent implements HomeEvent {}
-
 
 class HomePatternEvent implements HomeEvent {
   final PageModel pageModel;

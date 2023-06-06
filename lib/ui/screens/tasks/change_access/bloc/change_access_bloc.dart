@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grade/domain/model/teacher_model.dart';
 import 'package:grade/domain/repository/grade_repository.dart';
-import 'package:postgres/postgres.dart';
 
 part 'change_access_event.dart';
 part 'change_access_state.dart';
@@ -51,7 +50,7 @@ class ChangeAccessBloc extends Bloc<ChangeAccessEvent, ChangeAccessState> {
           emit(ChangeAccessTeachersNotFoundState());
         }
       }
-    } on PostgreSQLException catch (e) {
+    } catch (e) {
       emit(ChangeAccessErrorState());
       debugPrint(e.toString());
     }
@@ -62,7 +61,7 @@ class ChangeAccessBloc extends Bloc<ChangeAccessEvent, ChangeAccessState> {
       emit(ChangeAccessInProgressState());
       await gradeRepository.changeAccess(event.id, userRole);
       emit(ChangeAccessSuccessState());
-    } on PostgreSQLException catch (e) {
+    } catch (e) {
       emit(ChangeAccessErrorState());
       debugPrint(e.toString());
     }

@@ -44,7 +44,7 @@ class EditStudyPlanBloc extends Bloc<EditStudyPlanEvent, EditStudyPlanState> {
         );
         emit(EditPlanSuccessState());
       }
-    } on PostgreSQLException catch (e) {
+    } catch (e) {
       emit(EditPlanErrorState());
       debugPrint(e.toString());
     }

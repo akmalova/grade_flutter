@@ -10,6 +10,8 @@ import 'package:grade/ui/screens/add_task/pattern/pattern_screen.dart';
 import 'package:grade/ui/screens/home/bloc/home/home_bloc.dart';
 import 'package:grade/ui/screens/reports/study_plans/bloc/study_plans_bloc.dart';
 import 'package:grade/ui/screens/reports/study_plans/study_plans_screen.dart';
+import 'package:grade/ui/screens/reports/teacher_info/bloc/teacher_info_bloc.dart';
+import 'package:grade/ui/screens/reports/teacher_info/teacher_info_screen.dart';
 import 'package:grade/ui/screens/tasks/change_access/bloc/change_access_bloc.dart';
 import 'package:grade/ui/screens/tasks/change_access/change_access_screen.dart';
 import 'package:grade/ui/screens/tasks/edit_study_plan/bloc/edit_study_plan_bloc.dart';
@@ -59,6 +61,11 @@ class HomeWidget extends StatelessWidget {
           return BlocProvider(
             create: (context) => PatternBloc(getIt<GradeRepository>()),
             child: PatternScreen(page: state.pageModel),
+          );
+        } else if (state is HomeTeacherInfoState) {
+          return BlocProvider(
+            create: (context) => TeacherInfoBloc(getIt<GradeRepository>()),
+            child: const TeacherInfoScreen(),
           );
         } else if (state is HomeStudyPlansState) {
           return BlocProvider(

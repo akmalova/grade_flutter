@@ -33,7 +33,7 @@ class UnlockDisciplineBloc
         final result = await gradeRepository.unlockDiscipline(previousState.id);
         emit(UnlockDisciplineSuccessState(result));
       }
-    } on PostgreSQLException catch (e) {
+    } catch (e) {
       emit(UnlockDisciplineErrorState());
       debugPrint(e.toString());
     }

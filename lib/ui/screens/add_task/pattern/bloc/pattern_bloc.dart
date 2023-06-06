@@ -23,7 +23,7 @@ class PatternBloc extends Bloc<PatternEvent, PatternState> {
         event.values,
       );
       emit(PatternSuccessState(result));
-    } on PostgreSQLException catch (e) {
+    } catch (e) {
       emit(PatternErrorState());
       debugPrint(e.toString());
     }

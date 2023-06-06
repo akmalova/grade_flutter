@@ -37,7 +37,7 @@ class TransferTeacherDataBloc
         );
         emit(TransferDataSuccessState(result));
       }
-    } on PostgreSQLException catch (e) {
+    } catch (e) {
       emit(TransferDataErrorState());
       debugPrint(e.toString());
     }

@@ -27,7 +27,7 @@ class StudyPlansTable extends StatelessWidget {
       'Фамилия',
       'Имя',
       'Отчество',
-      'Внешний id рабочего плана',
+      'Внешний id\nрабочего плана',
       'Год',
     ];
     List<DataColumn> dataColumnList = [];
