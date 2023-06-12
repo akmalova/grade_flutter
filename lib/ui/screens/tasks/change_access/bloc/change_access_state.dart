@@ -45,6 +45,10 @@ class ChangeAccessInProgressState extends ChangeAccessState {}
 
 class ChangeAccessSuccessState extends ChangeAccessState {}
 
-class ChangeAccessErrorState extends ChangeAccessState {}
+class ChangeAccessErrorState extends ChangeAccessState {
+  final String error;
+
+  ChangeAccessErrorState(this.error);
+}
 
 class ChangeAccessTeachersNotFoundState extends ChangeAccessState {}

@@ -18,4 +18,8 @@ class UnlockDisciplineSuccessState extends UnlockDisciplineState {
   UnlockDisciplineSuccessState(this.rowCount);
 }
 
-class UnlockDisciplineErrorState extends UnlockDisciplineState {}
+class UnlockDisciplineErrorState extends UnlockDisciplineState {
+  final String error;
+
+  UnlockDisciplineErrorState(this.error);
+}

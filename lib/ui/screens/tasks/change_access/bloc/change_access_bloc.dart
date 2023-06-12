@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grade/domain/model/teacher_model.dart';
@@ -51,8 +53,10 @@ class ChangeAccessBloc extends Bloc<ChangeAccessEvent, ChangeAccessState> {
         }
       }
     } catch (e) {
-      emit(ChangeAccessErrorState());
-      debugPrint(e.toString());
+      List<int> bytes = e.toString().codeUnits;
+      String error = utf8.decode(bytes);
+      debugPrint(error);
+      emit(ChangeAccessErrorState(error));
     }
   }
 
@@ -62,8 +66,10 @@ class ChangeAccessBloc extends Bloc<ChangeAccessEvent, ChangeAccessState> {
       await gradeRepository.changeAccess(event.id, userRole);
       emit(ChangeAccessSuccessState());
     } catch (e) {
-      emit(ChangeAccessErrorState());
-      debugPrint(e.toString());
+      List<int> bytes = e.toString().codeUnits;
+      String error = utf8.decode(bytes);
+      debugPrint(error);
+      emit(ChangeAccessErrorState(error));
     }
   }
 

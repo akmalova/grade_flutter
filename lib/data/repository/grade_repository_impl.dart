@@ -14,14 +14,14 @@ class GradeRepositoryImpl extends GradeRepository {
   }
 
   @override
-  Future<void> connect({
+  Future<String?> connect({
     required String host,
     required int port,
     required String databaseName,
     required String username,
     required String password,
   }) async {
-    gradeRemoteDataSource.connect(
+    return gradeRemoteDataSource.connect(
       host: host,
       port: port,
       databaseName: databaseName,

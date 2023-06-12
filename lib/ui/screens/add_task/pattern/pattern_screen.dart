@@ -56,6 +56,7 @@ class PatternScreen extends StatelessWidget {
               } else if (state is PatternErrorState) {
                 return GradeErrorWidget(
                   description: 'Не удалось выполнить запрос',
+                  errorText: state.error,
                   onTap: () {
                     for (TextEditingController controller in _controllers) {
                       controller.clear();

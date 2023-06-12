@@ -5,21 +5,26 @@ import 'package:postgres/postgres.dart';
 class GradeRemoteDataSource {
   late final PostgreSQLConnection _connection;
 
-  Future<void> connect({
+  Future<String?> connect({
     required String host,
     required int port,
     required String databaseName,
     required String username,
     required String password,
   }) async {
-    _connection = PostgreSQLConnection(
-      host,
-      port,
-      databaseName,
-      username: username,
-      password: password,
-    );
-    await _connection.open();
+    try {
+      _connection = PostgreSQLConnection(
+        host,
+        port,
+        databaseName,
+        username: username,
+        password: password,
+      );
+      await _connection.open();
+      return null;
+    } catch (e) {
+      return e.toString();
+    }
   }
 
   Future<int> unlockDiscipline(String id) async {

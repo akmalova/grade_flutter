@@ -1,7 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grade/domain/repository/grade_repository.dart';
-import 'package:postgres/postgres.dart';
 
 part 'transfer_teacher_data_event.dart';
 part 'transfer_teacher_data_state.dart';
@@ -38,8 +39,10 @@ class TransferTeacherDataBloc
         emit(TransferDataSuccessState(result));
       }
     } catch (e) {
-      emit(TransferDataErrorState());
-      debugPrint(e.toString());
+      List<int> bytes = e.toString().codeUnits;
+      String error = utf8.decode(bytes);
+      debugPrint(error);
+      emit(TransferDataErrorState(error));
     }
   }
 

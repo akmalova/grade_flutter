@@ -46,6 +46,7 @@ class _TransferTeacherDataScreenState extends State<TransferTeacherDataScreen> {
               } else if (state is TransferDataErrorState) {
                 return GradeErrorWidget(
                   description: 'Не удалось объеднить аккаунты преподавателя',
+                  errorText: state.error,
                   onTap: () {
                     context
                         .read<TransferTeacherDataBloc>()

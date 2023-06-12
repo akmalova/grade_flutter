@@ -36,16 +36,26 @@ class _StudyPlansScreenState extends State<StudyPlansScreen> {
                 return GradeContainer(
                   child: StudyPlansTable(studyPlans: state.studyPlans),
                 );
-              } else if (state is StudyPlansErrorState) {
+              } else if (state is StudyPlansNotFoundState) {
                 return GradeErrorWidget(
-                  description: 'Не удалось получить рабочие планы студента',
+                  description: 'Не удалось найти рабочие планы студента',
                   onTap: () {
                     context
                         .read<StudyPlansBloc>()
                         .add(StudyPlansOpenInitialEvent());
                   },
                 );
-              } else {
+              } else if (state is StudyPlansErrorState) {
+                return GradeErrorWidget(
+                  description: 'Не удалось получить рабочие планы студента',
+                  errorText: state.error,
+                  onTap: () {
+                    context
+                        .read<StudyPlansBloc>()
+                        .add(StudyPlansOpenInitialEvent());
+                  },
+                );
+              }else {
                 return GradeContainer(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,

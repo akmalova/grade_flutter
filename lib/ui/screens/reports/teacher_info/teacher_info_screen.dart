@@ -37,6 +37,7 @@ class _TeacherInfoScreenState extends State<TeacherInfoScreen> {
               } else if (state is TeacherInfoErrorState) {
                 return GradeErrorWidget(
                   description: 'Не удалось выполнить поиск',
+                  errorText: state.error,
                   onTap: () {
                     context
                         .read<TeacherInfoBloc>()
@@ -111,7 +112,7 @@ class _TeacherInfoScreenState extends State<TeacherInfoScreen> {
                         ),
                       const SizedBox(height: 10),
                       GradeButton(
-                        title: 'Найти преподавателей',
+                        title: 'Найти',
                         onTap: () {
                           context.read<TeacherInfoBloc>().add(
                                 TeacherInfoGetTeachersEvent(),

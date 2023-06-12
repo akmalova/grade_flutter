@@ -32,14 +32,18 @@ class HomeBloc extends Bloc<HomeEvent, HomeState>
     emit(HomeInProgressState());
     final jsonString = await File('./config.json').readAsString();
     final json = jsonDecode(jsonString);
-    getIt<GradeRepository>().connect(
+    String? result = await getIt<GradeRepository>().connect(
       host: json['host'],
       port: json['port'],
       databaseName: json['databaseName'],
       username: json['username'],
       password: json['password'],
     );
-    emit(HomeDataLoadedState());
+    if (result == null) {
+      emit(HomeDataLoadedState());
+    } else {
+      emit(HomeErrorState(result));
+    }
   }
 
   void _unlockDiscipline(HomeUnlockDisciplineEvent event, Emitter emit) {
@@ -61,7 +65,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState>
   void _teacherInfo(HomeTeacherInfoEvent event, Emitter emit) {
     emit(HomeTeacherInfoState());
   }
-
 
   void _studyPlans(HomeStudyPlansEvent event, Emitter emit) {
     emit(HomeStudyPlansState());

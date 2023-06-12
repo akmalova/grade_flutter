@@ -114,7 +114,7 @@ class _SideMenuState extends State<SideMenu> {
               title: PageSections.teachers,
               children: [
                  SideMenuSubitem(
-                  title: 'Найти информацию о преподавателях',
+                  title: 'Поиск информации о преподавателях',
                   onTap: () {
                     context.read<HomeBloc>().add(HomeTeacherInfoEvent());
                   },

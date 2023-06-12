@@ -44,6 +44,7 @@ class _EditStudyPlanScreenState extends State<EditStudyPlanScreen> {
               } else if (state is EditPlanErrorState) {
                 return GradeErrorWidget(
                   description: 'Не удалось отредактировать рабочий план',
+                  errorText: state.error,
                   onTap: () {
                     context
                         .read<EditStudyPlanBloc>()

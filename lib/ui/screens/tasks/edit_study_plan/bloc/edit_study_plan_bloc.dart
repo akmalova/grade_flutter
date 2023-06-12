@@ -1,7 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grade/domain/repository/grade_repository.dart';
-import 'package:postgres/postgres.dart';
 
 part 'edit_study_plan_event.dart';
 part 'edit_study_plan_state.dart';
@@ -45,8 +46,10 @@ class EditStudyPlanBloc extends Bloc<EditStudyPlanEvent, EditStudyPlanState> {
         emit(EditPlanSuccessState());
       }
     } catch (e) {
-      emit(EditPlanErrorState());
-      debugPrint(e.toString());
+      List<int> bytes = e.toString().codeUnits;
+      String error = utf8.decode(bytes);
+      debugPrint(error);
+      emit(EditPlanErrorState(error));
     }
   }
 

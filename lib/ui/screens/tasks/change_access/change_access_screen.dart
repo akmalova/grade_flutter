@@ -49,6 +49,7 @@ class _ChangeAccessScreenState extends State<ChangeAccessScreen> {
                 return GradeErrorWidget(
                   description:
                       'Не удалось изменить право доступа преподавателя',
+                  errorText: state.error,
                   onTap: () {
                     context
                         .read<ChangeAccessBloc>()

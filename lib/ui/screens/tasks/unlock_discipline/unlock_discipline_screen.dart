@@ -37,8 +37,8 @@ class UnlockDisciplineScreen extends StatelessWidget {
                 );
               } else if (state is UnlockDisciplineErrorState) {
                 return GradeErrorWidget(
-                  description:
-                      'Не удалось разблокировать дисциплину',
+                  description: 'Не удалось разблокировать дисциплину',
+                  errorText: state.error,
                   onTap: () {
                     context
                         .read<UnlockDisciplineBloc>()
@@ -66,7 +66,8 @@ class UnlockDisciplineScreen extends StatelessWidget {
                         hintText: 'Номер ведомости',
                       ),
                       const SizedBox(height: 10),
-                      if (state is UnlockDisciplineInitialState && state.isEmptyFields)
+                      if (state is UnlockDisciplineInitialState &&
+                          state.isEmptyFields)
                         const Text(
                           'Поля должны быть заполнены',
                           style: TextStyle(

@@ -13,4 +13,8 @@ class PatternSuccessState extends PatternState {
   PatternSuccessState(this.result);
 }
 
-class PatternErrorState extends PatternState {}
+class PatternErrorState extends PatternState {
+  final String error;
+
+  PatternErrorState(this.error);
+}

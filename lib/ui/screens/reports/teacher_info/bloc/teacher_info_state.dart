@@ -39,7 +39,11 @@ class TeacherInfoGetTeachersSuccessState extends TeacherInfoState {
 
 class TeacherInfoInProgressState extends TeacherInfoState {}
 
-class TeacherInfoErrorState extends TeacherInfoState {}
+class TeacherInfoErrorState extends TeacherInfoState {
+  final String error;
+
+  TeacherInfoErrorState(this.error);
+}
 
 class TeacherInfoTeachersNotFoundState extends TeacherInfoState {}
 

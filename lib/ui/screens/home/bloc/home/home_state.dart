@@ -7,6 +7,12 @@ class HomeInitialState extends HomeState {}
 
 class HomeInProgressState extends HomeState {}
 
+class HomeErrorState extends HomeState {
+  final String error;
+
+  HomeErrorState(this.error);
+}
+
 class HomeDataLoadedState extends HomeState {}
 
 class HomeUnlockDisciplineState extends HomeState {}

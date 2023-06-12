@@ -31,4 +31,10 @@ class StudyPlansSuccessState extends StudyPlansState {
   StudyPlansSuccessState(this.studyPlans);
 }
 
-class StudyPlansErrorState extends StudyPlansState {}
+class StudyPlansErrorState extends StudyPlansState {
+  final String error;
+
+  StudyPlansErrorState(this.error);
+}
+
+class StudyPlansNotFoundState extends StudyPlansState {}

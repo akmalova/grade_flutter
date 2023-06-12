@@ -2,7 +2,7 @@ import 'package:grade/domain/model/study_plan_model.dart';
 import 'package:grade/domain/model/teacher_model.dart';
 
 abstract class GradeRepository {
-  Future<void> connect({
+  Future<String?> connect({
     required String host,
     required int port,
     required String databaseName,

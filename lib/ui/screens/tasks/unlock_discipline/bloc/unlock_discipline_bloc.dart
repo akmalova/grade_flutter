@@ -1,7 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grade/domain/repository/grade_repository.dart';
-import 'package:postgres/postgres.dart';
 
 part 'unlock_discipline_event.dart';
 part 'unlock_discipline_state.dart';
@@ -34,8 +35,10 @@ class UnlockDisciplineBloc
         emit(UnlockDisciplineSuccessState(result));
       }
     } catch (e) {
-      emit(UnlockDisciplineErrorState());
-      debugPrint(e.toString());
+      List<int> bytes = e.toString().codeUnits;
+      String error = utf8.decode(bytes);
+      debugPrint(error);
+      emit(UnlockDisciplineErrorState(error));
     }
   }
 

@@ -35,4 +35,8 @@ class TransferDataSuccessState extends TransferTeacherDataState {
   TransferDataSuccessState(this.result);
 }
 
-class TransferDataErrorState extends TransferTeacherDataState {}
+class TransferDataErrorState extends TransferTeacherDataState {
+  final String error;
+
+  TransferDataErrorState(this.error);
+}

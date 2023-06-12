@@ -1,8 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grade/domain/model/study_plan_model.dart';
 import 'package:grade/domain/repository/grade_repository.dart';
-import 'package:postgres/postgres.dart';
 
 part 'study_plans_event.dart';
 part 'study_plans_state.dart';
@@ -31,12 +32,14 @@ class StudyPlansBloc extends Bloc<StudyPlansEvent, StudyPlansState> {
         if (result.isNotEmpty) {
           emit(StudyPlansSuccessState(result));
         } else {
-          emit(StudyPlansErrorState());
+          emit(StudyPlansNotFoundState());
         }
       }
     } catch (e) {
-      emit(StudyPlansErrorState());
-      debugPrint(e.toString());
+      List<int> bytes = e.toString().codeUnits;
+      String error = utf8.decode(bytes);
+      debugPrint(error);
+      emit(StudyPlansErrorState(error));
     }
   }
 

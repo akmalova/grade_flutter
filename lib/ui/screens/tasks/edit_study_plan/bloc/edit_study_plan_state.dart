@@ -40,4 +40,8 @@ class EditPlanInProgressState extends EditStudyPlanState {}
 
 class EditPlanSuccessState extends EditStudyPlanState {}
 
-class EditPlanErrorState extends EditStudyPlanState {}
+class EditPlanErrorState extends EditStudyPlanState {
+  final String error;
+
+  EditPlanErrorState(this.error);
+}
