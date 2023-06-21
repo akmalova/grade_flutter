@@ -4,7 +4,7 @@ import 'package:grade/ui/screens/home/bloc/home/home_bloc.dart';
 import 'package:grade/ui/utils/constants/app_colors.dart';
 import 'package:open_filex/open_filex.dart';
 
-class GradeAppBar extends StatelessWidget with PreferredSizeWidget {
+class GradeAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
 
   const GradeAppBar({Key? key, required this.title}) : super(key: key);
